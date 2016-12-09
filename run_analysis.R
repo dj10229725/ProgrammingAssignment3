@@ -44,5 +44,6 @@ combinedsubset$activity <- factor(combinedsubset$activity, labels = ActivityLabe
 Rearange <- melt(combinedsubset, id=c("subjectid","activity"))
 AverageByIDActivity <- dcast(Rearange, subjectid+activity ~ variable, mean)
 
+names(AverageByIDActivity) <- gsub("[[:punct:]]","",names(AverageByIDActivity) )
 
-write.csv(AverageByIDActivity, "TidyDataOutput.csv", row.names=FALSE)
+write.table(AverageByIDActivity, "TidyDataOutput.txt", row.names=FALSE)
